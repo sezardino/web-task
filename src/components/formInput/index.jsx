@@ -1,12 +1,20 @@
-import './index.css'
+import "./index.css";
 
-const FormInput = ({ type, name, value, onChange, placeholder, required, disabled, style }) => {
-
-  const formStyle = style === 'full' ? 'formInput formInput-full' : 'formInput formInput-half';
-
+const FormInput = ({
+  type,
+  name,
+  value,
+  onChange,
+  placeholder,
+  required,
+  disabled,
+  className = "",
+  ...rest
+}) => {
   return (
     <input
-      className={formStyle}
+      {...rest}
+      className={`formInput ${className}`}
       type={type}
       id={name}
       name={name}
