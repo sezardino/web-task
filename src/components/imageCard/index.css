@@ -2,10 +2,9 @@
   max-width: 35rem;
   position: relative;
 
-
   & .imageCard__image {
     max-width: 35rem;
-    border-radius: .8rem;
+    border-radius: 0.8rem;
   }
 
   & .imageCard__content {
@@ -17,7 +16,7 @@
     bottom: -12rem;
     right: 50%;
     transform: translateX(50%);
-    border-radius: .8rem;
+    border-radius: 0.8rem;
     padding: 3.3rem 3.2rem;
     text-align: center;
 

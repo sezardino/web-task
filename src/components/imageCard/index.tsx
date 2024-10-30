@@ -14,7 +14,13 @@ type Props = {
 const ImageCard = ({ image, heading, text, link }: Props) => {
   return (
     <div className="imageCard">
-      <Image src={image} alt={heading} className="imageCard__image" />
+      <Image
+        src={image}
+        alt={heading}
+        width={350}
+        height={196}
+        className="imageCard__image"
+      />
       <div className="imageCard__content">
         <Heading level="h3">{heading}</Heading>
         <Text className="imageCard__text"> {text} </Text>
