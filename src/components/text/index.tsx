@@ -3,12 +3,14 @@ import { ComponentPropsWithoutRef } from "react";
 type Props = ComponentPropsWithoutRef<"p"> & {
   color?: "white" | "black";
   size?: string;
+  tag?: "p" | "span";
 };
 
 const Text = ({
   className,
   color = "black",
   size = "16px",
+  tag: Tag = "p",
   style,
   children,
 }: Props) => {
@@ -19,9 +21,9 @@ const Text = ({
   };
 
   return (
-    <p className={className} style={textStyle}>
+    <Tag className={className} style={textStyle}>
       {children}
-    </p>
+    </Tag>
   );
 };
 

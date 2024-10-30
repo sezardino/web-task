@@ -1,4 +1,6 @@
 import { ComponentPropsWithoutRef } from "react";
+import { cn } from "../../utils/cn";
+
 import "./index.css";
 
 type Props = ComponentPropsWithoutRef<"input"> & {
@@ -13,14 +15,13 @@ const FormInput = ({
   placeholder,
   required,
   disabled,
-  style,
+  className,
+  ...rest
 }: Props) => {
-  const formStyle =
-    style === "full" ? "formInput formInput-full" : "formInput formInput-half";
-
   return (
     <input
-      className={formStyle}
+      {...rest}
+      className={cn("formInput", className)}
       type={type}
       id={name}
       name={name}
