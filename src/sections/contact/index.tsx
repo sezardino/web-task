@@ -1,31 +1,44 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import FormInput from "../../components/formInput";
 import Heading from "../../components/heading";
 import Text from "../../components/text";
+
 import contactModel from "../../models/contact.model";
+
 import "./index.css";
 
-const PHONE_NUMBER_PATTERN = "^+?[1-9]d{1,14}$";
 const PHONE_NUMBER_MAX_LENGTH = 15;
 
-const Contact = () => {
-  const [formValues, setFormValues] = useState({
-    firstName: "",
-    lastName: "",
-    number: "",
-    service: "",
-  });
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  number: "",
+  service: "",
+};
 
-  const submitHandler = (evt) => {
+type FormKeys = keyof typeof initialValues;
+
+const Contact = () => {
+  const [formValues, setFormValues] = useState(initialValues);
+
+  const changeFieldValue = (key: FormKeys, value: string) => {
+    setFormValues((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const submitHandler = (evt: FormEvent) => {
     evt.preventDefault();
-    console.log(evt.target);
+
+    alert(`Form submitted with this data: ${JSON.stringify(formValues)}`);
+    setFormValues(initialValues);
   };
 
   return (
     <section className="contact">
       <header className="header">
-        <Heading level={2}>{contactModel.heading}</Heading>
-        <Text size="16px">{contactModel.text}</Text>
+        <Heading level="h2">{contactModel.heading}</Heading>
+        <Text size="16px" className="text">
+          {contactModel.text}
+        </Text>
       </header>
       <form onSubmit={submitHandler} className="form">
         <div className="wrapper">
@@ -34,6 +47,8 @@ const Contact = () => {
             type="text"
             required
             placeholder={contactModel.fields.firstName}
+            value={formValues.firstName}
+            onChange={(evt) => changeFieldValue("firstName", evt.target.value)}
           />
 
           <FormInput
@@ -41,6 +56,8 @@ const Contact = () => {
             type="text"
             required
             placeholder={contactModel.fields.lastName}
+            value={formValues.lastName}
+            onChange={(evt) => changeFieldValue("lastName", evt.target.value)}
           />
 
           <FormInput
@@ -51,6 +68,8 @@ const Contact = () => {
             maxLength={PHONE_NUMBER_MAX_LENGTH}
             placeholder={contactModel.fields.number}
             className="row"
+            value={formValues.number}
+            onChange={(evt) => changeFieldValue("number", evt.target.value)}
           />
 
           <FormInput
@@ -59,6 +78,8 @@ const Contact = () => {
             required
             placeholder={contactModel.fields.service}
             className="row"
+            value={formValues.service}
+            onChange={(evt) => changeFieldValue("service", evt.target.value)}
           />
         </div>
 

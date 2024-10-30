@@ -5,6 +5,7 @@
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 24px;
 
@@ -12,7 +13,13 @@
     max-width: 445px;
   }
 
+  & .text {
+    margin-top: 60px;
+  }
+
   & .form {
+    max-width: 540px;
+
     & .wrapper {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
