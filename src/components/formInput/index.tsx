@@ -1,4 +1,9 @@
+import { ComponentPropsWithoutRef } from "react";
 import "./index.css";
+
+type Props = ComponentPropsWithoutRef<"input"> & {
+  style?: "full" | "half";
+};
 
 const FormInput = ({
   type,
@@ -8,13 +13,14 @@ const FormInput = ({
   placeholder,
   required,
   disabled,
-  className = "",
-  ...rest
-}) => {
+  style,
+}: Props) => {
+  const formStyle =
+    style === "full" ? "formInput formInput-full" : "formInput formInput-half";
+
   return (
     <input
-      {...rest}
-      className={`formInput ${className}`}
+      className={formStyle}
       type={type}
       id={name}
       name={name}
